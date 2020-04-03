@@ -1,2 +1,2 @@
 # Info-Projekt
-Bloß, dass wir mal ein GitRep haben
+Ein 3D-Flappy Bird artiges Etwas
