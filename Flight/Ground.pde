@@ -7,21 +7,26 @@ class Ground {
 
   float[][] groundZ;
 
+  float yoff, xoff;
+  float flying = 0;
+
   Ground() {
     cols = w/scl;
     rows = h/scl;
     groundZ = new float[cols][rows];
-    float yoff = 0;
+  }
+
+  void makeGround() {
+    flying -= 0.08;
+    yoff = flying;
     for (int y = 0; y < rows; y++) {
-      float xoff = 0;
+      xoff = 0;
       for (int x = 0; x < cols; x++) {
         groundZ[x][y] = map(noise(xoff, yoff), 0, 1, -100, 100);
         xoff += 0.1;
       }
       yoff += 0.1;
     }
-  }
-  void makeGround() {
     stroke(255);
     noFill();
     translate(width/2, height/2);
