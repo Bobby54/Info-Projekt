@@ -2,17 +2,15 @@ import de.bezier.data.sql.*;
 
 int highscore, score;
 SQLite db;
+Ground ground;
 
-void setup(){
+void setup() {
   size(800, 600, P3D);
   db = new SQLite(this, "Highscore.db");
-  if(db.connect()){
-    System.out.println("Klappt");
-  } else {
-    System.out.println("Klappt nicht");
-  }
+  ground = new Ground();
 }
 
-void draw(){
+void draw() {
   background(0);
+  ground.makeGround();
 }
