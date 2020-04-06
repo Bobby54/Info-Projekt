@@ -16,8 +16,8 @@ class Ground {
     groundZ = new float[cols][rows]; //determining the size of the plane and the array
   }
 
-  void makeGround() {
-    flying -= 0.08; //incrementing flying for the effect of movement of the plane
+  void makeGround(float speed) {
+    flying -= speed; //incrementing flying for the effect of movement of the plane
     yoff = flying;
     for (int y = 0; y < rows; y++) {
       xoff = 0;
@@ -27,20 +27,21 @@ class Ground {
       }
       yoff += 0.1;
     }
-    stroke(255); //make the stroke white
-    noFill();
+    noStroke();
     translate(width/2, height/2); 
     rotateX(PI/3); //rotating along the x-axis so the plane is angled
     translate(-w/2, -h/2);
     for (int y = 0; y < rows-1; y++) {
       beginShape(TRIANGLE_STRIP);
       for (int x = 0; x < cols; x++) {
+        fill(floor(map(groundZ[x][y], -100, 100, 0, 255))); //different shades of gray based on the height
         vertex(x*scl, y*scl, groundZ[x][y]);
         vertex(x*scl, (y+1)*scl, groundZ[x][y+1]);
       }
       endShape();
     } //creating the plane
     translate(w/2, h/2);
+    rotateX(-PI/3);
     translate(-width/2, -height/2);
   }
 }
