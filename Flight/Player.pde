@@ -1,33 +1,40 @@
 class Player {
-  float px, py, pv_x, pv_y; //Player-x-coordinate, Player-y-coordinate, Player speed 
+  float px, py, ps; // player-x, player-y, player speed
   boolean wPressed, sPressed, aPressed, dPressed; //booleans for the keyCodes
-  PShape pm; //player model
+  int hs; //hitbox size
 
   Player() {
     px = width/2;
     py = height/2;
-    pv_x = 0;
-    pv_y = 0;
-
-    pm = loadShape("otter.svg"); //loading the player model
+    ps = 5;
+    hs = 50;
   }
 
   void drawPlayer() {
-    shape(pm, px, py); //display the model
+    fill(360);
+    rect(px, py, hs*2, hs*2);
   }
 
   void movePlayer() {
     if (wPressed) {
-      py -= 2;
+      if (py > hs) {
+        py -= ps;
+      }
     }
     if (sPressed) {
-      py += 2;
+      if (py < height - hs) {
+        py += ps;
+      }
     }
     if (aPressed) {
-      px -= 2;
+      if (px > hs) {
+        px -= ps;
+      }
     }
     if (dPressed) {
-      px += 2;
+      if (px < width - hs) {
+        px += ps;
+      }
     }
   } //function for moving the player
 }
