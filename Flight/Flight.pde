@@ -1,5 +1,6 @@
 import de.bezier.data.sql.*;
 
+
 int highscore, score;
 SQLite db;
 Ground ground;
@@ -9,8 +10,11 @@ void setup() {
   //size(800, 600, P3D);
   fullScreen(P3D); 
   colorMode(HSB, 360, 100, 100);
+  
   db = new SQLite(this, "Highscore.db"); //adding the database
+  
   ground = new Ground(); //adding the ground
+  
   //player = new Player();
 }
 
