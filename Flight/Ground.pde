@@ -45,7 +45,7 @@ class Ground {
         vertex(x*scl, (y+1)*scl, groundZ[x][y+1]);
       }
       endShape();
-    } //creating the plane
+    } //creating ground
     translate(w/2, h/2);
     rotateX(-PI/3);
     translate(-width/2, -height/2);

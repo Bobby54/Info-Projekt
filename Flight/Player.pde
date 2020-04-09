@@ -1,18 +1,23 @@
 class Player {
-  float px, py, ps; // player-x, player-y, player speed
+  float px, py, ps; // player_x, player_y, player speed
+
   boolean wPressed, sPressed, aPressed, dPressed; //booleans for the keyCodes
+
   int hs; //hitbox size
+
+  PImage img;
 
   Player() {
     px = width/2;
     py = height/2;
     ps = 5;
     hs = 50;
+    img = loadImage("graphics/plane.png");
   }
 
   void drawPlayer() {
     fill(360);
-    rect(px, py, hs*2, hs*2);
+    image(img, px, py, hs*2, hs);
   }
 
   void movePlayer() {

@@ -8,17 +8,21 @@ Ground ground;
 
 Player player;
 
+Ring ring;
+
 void setup() {
   //size(800, 600, P3D);
   fullScreen(P3D); 
   colorMode(HSB, 360, 100, 100);
   rectMode(CENTER);
 
-  db = new SQLite(this, "Highscore.db"); //adding the database
+  db = new SQLite(this, "database/Highscore.sqlite"); //adding the database
 
   ground = new Ground(); //adding the ground
 
   player = new Player(); //adding player
+  
+  ring = new Ring();
 }
 
 void draw() {
@@ -27,6 +31,10 @@ void draw() {
   text(frameRate, 20, 20);
   player.drawPlayer();
   player.movePlayer();
+  float s = -frameCount;
+  translate(width/2, height/2, s);
+  shape(ring.ring, 0, 0);
+  translate(-width/2, -height/2, -s);
 }
 
 void setGradient(color c1, color c2) {
@@ -46,9 +54,11 @@ void keyPressed() {
     player.sPressed = true;
   }
   if (key == 'a') {
+    player.img = loadImage("graphics/planeL.png");
     player.aPressed = true;
   }
   if (key == 'd') {
+    player.img = loadImage("graphics/planeR.png");
     player.dPressed = true;
   }
 }
@@ -61,9 +71,11 @@ void keyReleased() {
     player.sPressed = false;
   }
   if (key == 'a') {
+    player.img = loadImage("graphics/plane.png");
     player.aPressed = false;
   }
   if (key == 'd') {
+    player.img = loadImage("graphics/plane.png");
     player.dPressed = false;
   }
 }
