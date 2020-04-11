@@ -5,14 +5,17 @@ class Player {
 
   int hs; //hitbox size
 
-  PImage img;
+  PImage img, imgL, imgN, imgR;
 
   Player() {
     px = width/2;
     py = height/2;
     ps = 5;
     hs = 50;
-    img = loadImage("graphics/plane.png");
+    imgL = loadImage("graphics/planeL.png");
+    imgN = loadImage("graphics/plane.png");
+    imgR = loadImage("graphics/planeR.png");
+    img = imgN;
   }
 
   void drawPlayer() {

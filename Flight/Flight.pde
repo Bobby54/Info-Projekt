@@ -53,12 +53,12 @@ void keyPressed() {
   if (key == 's') {
     player.sPressed = true;
   }
-  if (key == 'a') {
-    player.img = loadImage("graphics/planeL.png");
+  if (key == 'a' && !player.dPressed) {
+    player.img = player.imgL;
     player.aPressed = true;
   }
-  if (key == 'd') {
-    player.img = loadImage("graphics/planeR.png");
+  if (key == 'd' && !player.aPressed) {
+    player.img = player.imgR;
     player.dPressed = true;
   }
 }
@@ -71,11 +71,11 @@ void keyReleased() {
     player.sPressed = false;
   }
   if (key == 'a') {
-    player.img = loadImage("graphics/plane.png");
+    player.img = player.imgN;
     player.aPressed = false;
   }
   if (key == 'd') {
-    player.img = loadImage("graphics/plane.png");
+    player.img = player.imgN;
     player.dPressed = false;
   }
 }
