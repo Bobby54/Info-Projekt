@@ -26,15 +26,16 @@ void setup() {
 }
 
 void draw() {
+  lights();
   setGradient(color(340, 100, 100), color(310, 100, 100));
   ground.makeGround(0.05); //drawing the ground
   text(frameRate, 20, 20);
-  player.drawPlayer();
+  /*player.drawPlayer();
   player.movePlayer();
   float s = -frameCount;
   translate(width/2, height/2, s);
   shape(ring.ring, 0, 0);
-  translate(-width/2, -height/2, -s);
+  translate(-width/2, -height/2, -s);*/
 }
 
 void setGradient(color c1, color c2) {
