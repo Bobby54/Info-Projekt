@@ -5,6 +5,7 @@ int highscore, score;
 
 GButton btnMakeWindow;
 GWindow window;
+
 SQLite db;
 
 Ground ground;
@@ -25,7 +26,7 @@ void setup() {
   ground = new Ground(); //adding the ground
 
   player = new Player(); //adding player
-  
+
   ring = new Ring();
 }
 
@@ -35,11 +36,11 @@ void draw() {
   ground.makeGround(0.05); //drawing the ground
   text(frameRate, 20, 20);
   /*player.drawPlayer();
-  player.movePlayer();
-  float s = -frameCount;
-  translate(width/2, height/2, s);
-  shape(ring.ring, 0, 0);
-  translate(-width/2, -height/2, -s);*/
+   player.movePlayer();
+   float s = -frameCount;
+   translate(width/2, height/2, s);
+   shape(ring.ring, 0, 0);
+   translate(-width/2, -height/2, -s);*/
 }
 
 void setGradient(color c1, color c2) {
@@ -94,12 +95,12 @@ void handleButtonEvents(GButton button, GEvent event) {
 
 void createWindows() {
   println("Making Window");
-  window = new GWindow(this, "Help", 500, 50, 477, 538, false, JAVA2D);
+  window = GWindow.getWindow(this, "Help", 500, 50, 477, 538, JAVA2D);
   window.addOnCloseHandler(this, "windowClosing"); 
   window.setActionOnClose(GWindow.CLOSE_WINDOW);
 }// createWindow
 
-public void windowClosing(GWindow w){
+public void windowClosing(GWindow w) {
   println("Window closing");
   btnMakeWindow.setEnabled(true);
 }
