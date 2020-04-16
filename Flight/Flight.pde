@@ -1,7 +1,10 @@
 import de.bezier.data.sql.*;
+import g4p_controls.*;
 
 int highscore, score;
 
+GButton btnMakeWindow;
+GWindow window;
 SQLite db;
 
 Ground ground;
@@ -13,6 +16,7 @@ Ring ring;
 void setup() {
   //size(800, 600, P3D);
   fullScreen(P3D); 
+  btnMakeWindow = new GButton(this, 10, 20, 140, 20, "PLAY GAME");            //just a test which I never got to test
   colorMode(HSB, 360, 100, 100);
   rectMode(CENTER);
 
@@ -79,4 +83,23 @@ void keyReleased() {
     player.img = player.imgN;
     player.dPressed = false;
   }
+}
+
+void handleButtonEvents(GButton button, GEvent event) {
+  if (button == btnMakeWindow && event == GEvent.CLICKED) {
+    createWindows();
+    btnMakeWindow.setEnabled(false);
+  }// if
+}
+
+void createWindows() {
+  println("Making Window");
+  window = new GWindow(this, "Help", 500, 50, 477, 538, false, JAVA2D);
+  window.addOnCloseHandler(this, "windowClosing"); 
+  window.setActionOnClose(GWindow.CLOSE_WINDOW);
+}// createWindow
+
+public void windowClosing(GWindow w){
+  println("Window closing");
+  btnMakeWindow.setEnabled(true);
 }
