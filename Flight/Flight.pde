@@ -1,46 +1,57 @@
 import de.bezier.data.sql.*;
 import g4p_controls.*;
 
-int highscore, score;
-
 GButton btnMakeWindow;
 GWindow window;
+GEvent event;
+GButton button;
 
 SQLite db;
 
 Ground ground;
-
 Player player;
-
 Ring ring;
 
+Game game;
+
+
+
+boolean enable = true;
+boolean all = true;
+boolean status = false; //false as longs as player is in menu, true if player clicked play button
+
 void setup() {
-  //size(800, 600, P3D);
-  fullScreen(P3D); 
-  btnMakeWindow = new GButton(this, 10, 20, 140, 20, "PLAY GAME");            //just a test which I never got to test
+  fullScreen(P3D);
   colorMode(HSB, 360, 100, 100);
   rectMode(CENTER);
+  btnMakeWindow = new GButton(this, width/2, height/2, 90, 40, "PLAY GAME");
+  btnMakeWindow.setEnabled(enable);
+  ground = new Ground();
+  player = new Player();
+  ring = new Ring();
+  game = new Game();
 
   db = new SQLite(this, "database/Highscore.sqlite"); //adding the database
-
-  ground = new Ground(); //adding the ground
-
-  player = new Player(); //adding player
-
-  ring = new Ring();
 }
 
 void draw() {
-  lights();
-  setGradient(color(340, 100, 100), color(310, 100, 100));
-  ground.makeGround(0.05); //drawing the ground
-  text(frameRate, 20, 20);
-  /*player.drawPlayer();
-   player.movePlayer();
-   float s = -frameCount;
-   translate(width/2, height/2, s);
-   shape(ring.ring, 0, 0);
-   translate(-width/2, -height/2, -s);*/
+  if (status == true) {
+    btnMakeWindow.setEnabled(false);
+    btnMakeWindow.setVisible(false);
+    ground.makeGround(0.05);
+    //player.drawPlayer();
+
+    lights();
+    setGradient(color(340, 100, 100), color(310, 100, 100));
+    ground.makeGround(0.05); //drawing the ground
+    text(frameRate, 20, 20);
+    /*player.drawPlayer();
+     player.movePlayer();
+     float s = -frameCount;
+     translate(width/2, height/2, s);
+     shape(ring.ring, 0, 0);
+     translate(-width/2, -height/2, -s);*/
+  }
 }
 
 void setGradient(color c1, color c2) {
@@ -88,19 +99,19 @@ void keyReleased() {
 
 void handleButtonEvents(GButton button, GEvent event) {
   if (button == btnMakeWindow && event == GEvent.CLICKED) {
-    createWindows();
-    btnMakeWindow.setEnabled(false);
-  }// if
+    status = true;
+  }
 }
 
-void createWindows() {
-  println("Making Window");
-  window = GWindow.getWindow(this, "Help", 500, 50, 477, 538, JAVA2D);
-  window.addOnCloseHandler(this, "windowClosing"); 
-  window.setActionOnClose(GWindow.CLOSE_WINDOW);
-}// createWindow
 
-public void windowClosing(GWindow w) {
-  println("Window closing");
-  btnMakeWindow.setEnabled(true);
-}
+//void createWindows() {
+//  println("Making Window");
+//  window = GWindow.getWindow(this, "Help", 500, 50, 477, 538, JAVA2D);
+//  window.addOnCloseHandler(this, "windowClosing"); 
+//  window.setActionOnClose(GWindow.CLOSE_WINDOW);
+//}// createWindow
+
+//public void windowClosing(GWindow w) {
+//  println("Window closing");
+//  btnMakeWindow.setEnabled(true);
+//}
