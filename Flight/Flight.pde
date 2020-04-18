@@ -1,7 +1,7 @@
 import de.bezier.data.sql.*;
 import g4p_controls.*;
 
-GButton btnMakeWindow;
+GButton buttonm;  //button in menu to start game
 GWindow window;
 GEvent event;
 GButton button;
@@ -24,8 +24,8 @@ void setup() {
   fullScreen(P3D);
   colorMode(HSB, 360, 100, 100);
   rectMode(CENTER);
-  btnMakeWindow = new GButton(this, width/2, height/2, 90, 40, "PLAY GAME");
-  btnMakeWindow.setEnabled(enable);
+  buttonm = new GButton(this, width/2, height/2, 90, 40, "PLAY GAME");    //set button location
+  buttonm.setEnabled(enable);                                             //makes button listen for event
   ground = new Ground();
   player = new Player();
   ring = new Ring();
@@ -36,8 +36,8 @@ void setup() {
 
 void draw() {
   if (status == true) {
-    btnMakeWindow.setEnabled(false);
-    btnMakeWindow.setVisible(false);
+    buttonm.setEnabled(false);                                            //disables the button
+    buttonm.setVisible(false);                                            //makes the button invisible
     ground.makeGround(0.05);
     //player.drawPlayer();
 
@@ -98,8 +98,8 @@ void keyReleased() {
 }
 
 void handleButtonEvents(GButton button, GEvent event) {
-  if (button == btnMakeWindow && event == GEvent.CLICKED) {
-    status = true;
+  if (button == buttonm && event == GEvent.CLICKED) {      
+    status = true;                                          //code for if button is clicked
   }
 }
 
@@ -113,5 +113,5 @@ void handleButtonEvents(GButton button, GEvent event) {
 
 //public void windowClosing(GWindow w) {
 //  println("Window closing");
-//  btnMakeWindow.setEnabled(true);
+//  buttonm.setEnabled(true);
 //}
