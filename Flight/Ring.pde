@@ -5,7 +5,7 @@ class Ring {
   
   Ring() {
     ring = createRing(100, 200, 90);
-    ring.noFill();
+    noFill();
     ring.setStroke(color(0, 0, 0));
     ring.setStrokeWeight(10);
   }
