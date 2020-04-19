@@ -41,7 +41,7 @@ void draw() {
     ground.makeGround(0.05);
     //player.drawPlayer();
 
-    lights();
+    
     setGradient(color(340, 100, 100), color(310, 100, 100));
     ground.makeGround(0.05); //drawing the ground
     text(frameRate, 20, 20);
