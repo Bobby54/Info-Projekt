@@ -1,2 +1,2 @@
 # Info-Projekt
-Ein 3D-Flappy Bird artiges Etwas, erstellt mit Processing IDE.
+A 3D-Flappy-Bird-ish something, created using Proecessing, unfortunately not finished since the project was cancelled due to cCvid.
